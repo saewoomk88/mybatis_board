@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.mybatis_board.dao.MembersDao">
+
+    <select id="seq" resultType="java.lang.Integer">
+        select get_seq('member')
+    </select>
+    <insert id="join" parameterType="membersDto">
+        insert into members values(#{num},#{id},#{pw},#{name},#{address},#{phone},
+        #{email},#{gender},#{join_date})
+    </insert>
+    <select id="findOne" parameterType="java.lang.String" resultType="membersDto">
+        select * from members where id=#{id}
+    </select>
+
+    <select id="findAll" resultType="membersDto">
+        select * from members
+    </select>
+
+</mapper>
