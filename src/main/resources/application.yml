@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/iu?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        # show_sql: true
+        format_sql: true
+    database: mysql
+
+logging.level:
+  org.hibernate.SQL: debug
+
+mybatis:
+  type-aliases-package: board.mybatis_board.dto
+  mapper-locations: classpath:/myBatis/**/*.xml
