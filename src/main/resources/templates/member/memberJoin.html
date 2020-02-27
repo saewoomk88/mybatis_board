@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <title>Join</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        /*css
+        타입 선택자 h1{}
+        아이디 선택자 #id{}
+        클래스 선택자 .class{}
+        */
+        body {
+            background-color: #616161;
+            color: white;
+            font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+            font-size: medium;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+
+        }
+
+        .div-form {
+            border: 2px solid #27ff96;
+            width: max-content;
+            margin: auto;
+
+        }
+
+        #join {
+            padding: 20px;
+        }
+
+        form {
+            text-align: left;
+            width: max-content;
+            font-size: 2em;
+            margin: auto;
+            background-color: #761300;
+        }
+
+        div label {
+        / / font-size: 50 %;
+        }
+
+        #div1 {
+
+            width: 300px;
+            height: 300px;
+            background-color: darkred;
+            padding: 10px;
+            border: white 10px solid;
+            margin: 10px auto;
+
+        }
+
+        #div2 {
+
+            display: inline-block;
+            background-color: #491217;
+            width: 100px;
+            height: 100px;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+           // float: top;
+            margin-top: 0;
+            width: 100%;
+            background-color: white;
+        }
+
+
+        ul {
+            text-align: center;
+            border-top: 1px solid red;
+            border-bottom: 1px solid red;
+            padding: 15px 0;
+            width: 100%;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        ul li {
+            display: inline;
+            text-transform: uppercase;
+            padding: 0 10px;
+            letter-spacing: 10px;
+        }
+
+        a:link {
+            color: #4b1a11;
+            text-decoration: none;
+        }
+
+        a:hover {
+            font-weight: bold;
+        }
+
+        a:visited {
+            color: #4b1a11;
+            font-weight: bold;
+        }
+
+        a:active {
+            font-weight: bold;
+        }
+
+        #active {
+            color: black;
+            font-weight: bold;
+        }
+        #div-body{
+            clear: both;
+
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <ul>
+        <li><a href="/join" id="active">Join</a></li>
+        <li><a href="/member/login">Login</a></li>
+        <li><a href="/">Board</a></li>
+    </ul>
+</div>
+
+<div id="div-body">
+    <h1>회원가입</h1>
+    <hr>
+    <div class="div-form">
+        <form action="/join" method="post">
+            <label>
+                <span>ID : </span>
+                <input type="text" name="id" autofocus placeholder="id를 입력하세요"/>
+            </label><br>
+            <label>
+                <span>PW : </span>
+                <input type="password" name="pw"/>
+            </label><br>
+            <label>
+                <span>NAME : </span>
+                <input type="text" name="name"/>
+            </label><br>
+            <label>
+                <span>ADDRESS : </span>
+                <input type="text" name="address"/>
+            </label><br>
+            <label>
+                <span>PHONE : </span>
+                <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="010-0000-0000"/>
+            </label><br>
+            <label>
+                <span>EMAIL : </span>
+                <input type="text" name="email"/>
+            </label><br>
+            <label>
+                <span>GENDER : M</span>
+                <input type="radio" name="gender" value="M"/>
+            </label>
+            <label for="W">
+                <span>W</span>
+            </label>
+            <input type="radio" name="gender" id="W" value="W"/><br>
+
+            <input type="submit" id="join" value="Join"/>
+
+        </form>
+    </div>
+</div>
+
+<div id="div1">
+    ddddddddddddd
+</div>
+<div id="div2">
+    <p>dddddddd</p>
+</div>
+0000000
+lllll
+</body>
+</html>

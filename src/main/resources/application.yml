@@ -5,6 +5,7 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+
   jpa:
     hibernate:
       ddl-auto: create
@@ -13,10 +14,13 @@ spring:
         # show_sql: true
         format_sql: true
     database: mysql
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
 
 logging.level:
   org.hibernate.SQL: debug
 
 mybatis:
-  type-aliases-package: board.mybatis_board.dto
+  type-aliases-package: board.mybatis_board
   mapper-locations: classpath:/myBatis/**/*.xml

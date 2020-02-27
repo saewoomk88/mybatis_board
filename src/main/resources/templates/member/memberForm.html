@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>member Form</title>
+</head>
+<body>
+<div class="div-form">
+    <form action="/member/modify" method="post">
+        <label>
+            <span>ID : </span>
+            <input type="text" name="id" autofocus placeholder="id를 입력하세요"/>
+        </label><br>
+        <label>
+            <span>PW : </span>
+            <input type="password" name="pw"/>
+        </label><br>
+        <label>
+            <span>NAME : </span>
+            <input type="text" name="name"/>
+        </label><br>
+        <label>
+            <span>ADDRESS : </span>
+            <input type="text" name="address"/>
+        </label><br>
+        <label>
+            <span>PHONE : </span>
+            <input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" title="010-0000-0000"/>
+        </label><br>
+        <label>
+            <span>EMAIL : </span>
+            <input type="text" name="email"/>
+        </label><br>
+        <label>
+            <span>GENDER : M</span>
+            <input type="radio" name="gender" value="M"/>
+        </label>
+        <label for="W">
+            <span>W</span>
+        </label>
+        <input type="radio" name="gender" id="W" value="W"/><br>
+
+        <input type="submit" id="join" value="Join"/>
+
+    </form>
+</div>
+</body>
+</html>

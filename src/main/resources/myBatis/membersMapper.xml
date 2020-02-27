@@ -13,8 +13,21 @@
         select * from members where id=#{id}
     </select>
 
-    <select id="findAll" resultType="membersDto">
-        select * from members
+    <select id="findAll" parameterType="Pager" resultType="membersDto">
+        select * from members order by num desc limit #{startRow},#{pageList}
     </select>
+
+    <update id="modify" parameterType="membersDto">
+        update members set address=#{address}, phone=#{phone}, email=#{email} where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+        delete from members where id=#{id}
+    </delete>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(num) from members
+    </select>
+
 
 </mapper>

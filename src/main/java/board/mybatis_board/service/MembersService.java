@@ -2,22 +2,31 @@ package board.mybatis_board.service;
 
 import board.mybatis_board.dao.MembersDao;
 import board.mybatis_board.dto.MembersDto;
+import board.mybatis_board.util.Pager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MembersService {
 
-    @Autowired
-    MembersDao membersDao;
+    private final MembersDao membersDao;
+
+    public int count() throws Exception{
+        return membersDao.count();
+    }
 
     public int seq() throws Exception{
         return membersDao.seq();
     }
 
     public int join(MembersDto membersDto) throws Exception{
+        membersDto.setNum(seq());
+        membersDto.setJoin_date(LocalDateTime.now());
         return membersDao.join(membersDto);
     }
 
@@ -25,7 +34,15 @@ public class MembersService {
         return membersDao.findOne(id);
     }
 
-    public List<MembersDto> findAll() throws  Exception{
-        return membersDao.findAll();
+    public List<MembersDto> findAll(Pager pager) throws  Exception{
+        return membersDao.findAll(pager);
+    }
+
+    public int modify(MembersDto membersDto) throws Exception{
+        return membersDao.modify(membersDto);
+    }
+
+    public int delete(String id) throws Exception{
+        return membersDao.delete(id);
     }
 }
