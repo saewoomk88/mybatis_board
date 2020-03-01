@@ -3,152 +3,52 @@
 <head><title>Hello</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" href="css/basic.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    var x ;
-    x="hello World";
-    var v=x.toUpperCase();
-    document.write(v)
-   // alert(x);
-
-    var fruits = ['apple', 'banana', 'grapes', 'mango', 'orange'];
-
-    /**
-     * 검색 조건에 따른 배열 필터링(쿼리)
-     */
-    function filterItems(query) {
-        return fruits.filter(function(ell) {
-            return ell.toLowerCase().indexOf(query.toLowerCase()) > -1;
-        })
-    }
-
-    console.log(filterItems('ap')); // ['apple', 'grapes']
-    console.log(filterItems('an')); // ['banana', 'mango', 'orange']
 
 </script>
-    <style>
-        a:link {
-            color: black;
-            text-decoration: none;
-        }
 
-        a:hover {
-            color: #491217;
-            font-weight: bold;
-        }
-
-        a:visited {
-            color: #272727;
-            font-weight: bold;
-        }
-
-        a:active {
-            font-weight: bold;
-        }
-
-        ul {
-            text-align: center;
-            list-style: none;
-        }
-
-        ul li {
-
-            text-transform: uppercase; /*대문자*/
-            padding: 10px 0;
-            letter-spacing: 10px; /*글자 간격*/
-        }
-
-        body {
-            background-color: #616161;
-            font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
-            font-size: medium;
-            text-align: center;
-            margin: 0;
-        }
-
-
-        h1 {
-            font-size: 3em;
-            margin-top: 0;
-            padding-top: 12px;
-
-        }
-
-        #active {
-            color: black;
-        }
-
-        header {
-            background-color: yellow;
-            width: 100%;
-            height: 100px;
-            margin: 0;
-        }
-
-        nav {
-            background-color: white;
-            width: 20%;
-            height: 1000px;
-            float: left;
-
-        }
-
-        section {
-            background-color: blue;
-            width: 80%;
-            height: 1000px;
-            float: right;
-        }
-
-        footer {
-            background-color: green;
-            width: 100%;
-            height: 100px;
-            clear: both;
-
-        }
-
-        #join {
-            padding: 20px;
-        }
-
-        form {
-            text-align: left;
-            width: content-box;
-        //height: max-content;
-            font-size: 2em;
-            padding-left: 20px;
-            margin: auto;
-            background-color: #761300;
-        }
-    </style>
 </head>
 <body>
-<div id="wrapper">
+<nav class = "navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> WoomShop </font> </font> </a>
+    <button class = "navbar-toggler"type = "button"data-toggle = "collapse"data-target = "# navbarColor01"aria-controls = "navbarColor01"aria-expanded = "false"aria-label = "탐색 ">
+        <span class = "navbar-toggler-icon"> </span>
+    </button>
 
-
-    <header>
-        <h1>Portfolio</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/join">Join</a></li>
-            <li><a href="/member/login" id="active">Login</a></li>
-            <li><a href="/">Board</a></li>
+    <div class = "collapse navbar-collapse"id = "navbarColor01">
+        <ul class = "navbar-nav mr-auto">
+            <li class = "nav-item active">
+                <a class="nav-link" href="/"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 홈 </font> </font> <span class = "sr-only"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> (현재) </font> </font> </span > </a>
+            </li>
+            <li class = "nav-item">
+                <a class="nav-link" href="board/list"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 게시판 </font> </font> </a>
+            </li>
+            <li class = "nav-item">
+                <a class="nav-link" href="#"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 가격 </font> </font> </a>
+            </li>
+            <li class = "nav-item">
+                <a class="nav-link" href="/member/login"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 가입 </font> </font> </a>
+            </li>
         </ul>
-    </nav>
-    <section>
-        <script>
-            var now = new Date();
-            document.write(now);
-
-        </script>
-        content
-    </section>
-    <footer>
-        footer
-    </footer>
+        <form class = "form-inline my-2 my-lg-0">
+            <input class = "form-control mr-sm-2"type = "text"자리 표시 자 = "검색">
+            <button class = "btn btn-secondary my-2 my-sm-0"type = "submit"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;"> 검색 </font> </font> </button>
+        </form>
+    </div>
+</nav>
 
 
-</div>
+
 </body>
 </html>

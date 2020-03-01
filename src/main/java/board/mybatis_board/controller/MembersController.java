@@ -28,7 +28,7 @@ public class MembersController {
     @PostMapping("/join")
     public String join(Model model, MembersDto membersDto) throws Exception {
         model.addAttribute(membersService.join(membersDto));
-        return "member/memberJoin";
+        return "redirect:/";
     }
 
     /**
