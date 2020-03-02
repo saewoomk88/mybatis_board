@@ -18,5 +18,6 @@ public interface MembersDao {
     int modify(MembersDto membersDto) throws Exception;
     int delete(String id) throws Exception;
     int count() throws Exception;
+    String findById(String id)throws Exception;
 
 }

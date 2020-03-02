@@ -2182,6 +2182,7 @@ textarea.form-control {
 .form-text {
   display: block;
   margin-top: 0.25rem;
+  color : red;
 }
 
 .form-row {

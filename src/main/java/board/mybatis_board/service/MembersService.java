@@ -45,4 +45,8 @@ public class MembersService {
     public int delete(String id) throws Exception{
         return membersDao.delete(id);
     }
+
+    public String findById(String id) throws Exception{
+        return membersDao.findById(id);
+    }
 }
