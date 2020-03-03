@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head><title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!--    마지막에 변경
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/JavaScript" href="js/bootstrap.min.js"></script>-->
@@ -19,13 +18,19 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <style>
-        table{
+        form{
             max-width: 80%;
             margin: 50px auto;
         }
-        .pager{
-          margin: auto;
-          width: max-content;
+        #content{
+            margin-top: 0;
+            margin-bottom: 0;
+            height: 500px;
+        }
+        #insert {
+            padding: 15px 30px;
+            margin-top: 30px;
+            float: right;
         }
     </style>
 </head>
@@ -66,53 +71,37 @@
         </form>
     </div>
 </nav>
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Num</th>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Address</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="table-primary">
-        <th scope="row">1</th>
-        <td>member1</td>
-        <td>iu</td>
-        <td>서울 서대문구 홍제동 321-1</td>
-        <td>010-0000-0000</td>
-        <td>ssinga1@naver.com</td>
-    </tr>
-    </tbody>
-</table>
-<div class="pager">
-    <ul class="pagination pagination-sm">
-        <li class="page-item disabled">
-            <a class="page-link" href="#">&laquo;</a>
-        </li>
-        <li class="page-item active">
-            <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">5</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">&raquo;</a>
-        </li>
-    </ul>
-</div>
+<form id="form" action="/join" method="post">
+    <fieldset>
+        <legend>글쓰기</legend>
+
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control inputs" id="id" name="id" aria-describedby="idHelp"
+                   readonly value="">
+            <small id="idHelp" class="form-text text-muted help"><p></p></small>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control inputs" id="name" name="name" readonly value="">
+            <small id="namelHelp" class="form-text text-muted help"><p></p></small>
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control inputs" id="title" name="title" placeholder="Title">
+            <small id="titleHelp"  class="form-text text-muted help"><p></p></small>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="3" style="">content</textarea>
+        </div>
+
+
+        <button type="button" class="btn btn-primary" id="insert">등록</button>
+    </fieldset>
+</form>
+
 
 </body>
 </html>
