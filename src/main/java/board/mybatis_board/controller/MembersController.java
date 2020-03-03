@@ -35,6 +35,7 @@ public class MembersController {
         model.addAttribute(membersService.join(membersDto));
         return "redirect:/";
     }
+    //아이디 중복 체크
     @PostMapping("/idCheck")
     @ResponseBody
     public String findById(@RequestParam("id") String id) throws Exception{
@@ -63,8 +64,10 @@ public class MembersController {
 
     @PostMapping("/member/login")
     public String findOne(String id, HttpSession session) throws Exception {
-        session.setAttribute("member", membersService.findOne(id));
-        return "member/memberLogin";
+        MembersDto one = membersService.findOne(id);
+        System.out.println("one = " + one.getName());
+        session.setAttribute("member", one);
+        return "redirect:/";
     }
 
     /**
@@ -74,6 +77,11 @@ public class MembersController {
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+    //회원 정보 조회
+    @GetMapping("/member/one")
+    public String memberOne() {
+        return "member/memberOne";
     }
 
     /**회원 수정**/
@@ -92,7 +100,7 @@ public class MembersController {
         } else {
             model.addAttribute("msg", "수정실패");
         }
-        return "redirect:/member/modify";
+        return "redirect:/member/memberOne";
 
     }
 
