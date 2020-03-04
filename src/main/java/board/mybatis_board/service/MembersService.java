@@ -49,4 +49,8 @@ public class MembersService {
     public String findById(String id) throws Exception{
         return membersDao.findById(id);
     }
+
+    public MembersDto login(MembersDto membersDto) throws  Exception{
+        return membersDao.login(membersDto);
+    }
 }

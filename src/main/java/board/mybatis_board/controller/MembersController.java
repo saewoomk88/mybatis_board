@@ -63,11 +63,18 @@ public class MembersController {
     }
 
     @PostMapping("/member/login")
-    public String findOne(String id, HttpSession session) throws Exception {
-        MembersDto one = membersService.findOne(id);
-        System.out.println("one = " + one.getName());
-        session.setAttribute("member", one);
-        return "redirect:/";
+    public String findOne(MembersDto membersDto, HttpSession session) throws Exception {
+        String path ="";
+        if(membersDto !=null){
+            MembersDto login = membersService.login(membersDto);
+            session.setAttribute("member", login);
+            path="redirect:/";
+        }else {
+            path="redirect:/member/login";
+        }
+
+        return path;
+
     }
 
     /**
@@ -100,7 +107,7 @@ public class MembersController {
         } else {
             model.addAttribute("msg", "수정실패");
         }
-        return "redirect:/member/memberOne";
+        return "redirect:/member/one";
 
     }
 

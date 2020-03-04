@@ -77,30 +77,30 @@
         <div class="form-group">
 
             <input type="hidden" class="form-control inputs" id="num" name="num"
-                   disabled value="">
+                   disabled th:value="${session.member.num}">
 
         </div>
 
         <div class="form-group">
             <label for="id">ID</label>
             <input type="text" class="form-control inputs" id="id" name="id" aria-describedby="idHelp"
-                   disabled value="">
+                   disabled th:value="${session.member.id}">
             <small id="idHelp" class="form-text text-muted help"><p></p></small>
         </div>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control inputs" id="name" name="name" disabled value="">
+            <input type="text" class="form-control inputs" id="name" name="name" disabled th:value="${session.member.name}">
             <small id="namelHelp" class="form-text text-muted help"><p></p></small>
         </div>
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control inputs" id="title" name="title" value="">
+            <input type="text" class="form-control inputs" id="title" name="title" th:value="${board.title}">
             <small id="titleHelp"  class="form-text text-muted help"><p></p></small>
         </div>
 
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea class="form-control" id="content" name="content" rows="3" style=""></textarea>
+            <textarea class="form-control" id="content" name="content" rows="3" th:text="${board.content}"></textarea>
         </div>
 
 

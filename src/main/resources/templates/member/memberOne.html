@@ -90,35 +90,38 @@
         </form>
     </div>
 </nav>
+
+
+
 <form id="form" action="/join" method="post">
     <fieldset>
         <legend>회원수정</legend>
-            <input type="hidden" name="num" value="${member.num}" disabled>
+            <input type="hidden" name="num" th:value="${session.member.num}" disabled>
         <div class="form-group">
             <label for="id">ID</label>
             <input type="text" class="form-control inputs" id="id" name="id" aria-describedby="idHelp"
-                   disabled value="${member.id}">
+        disabled th:value="${session.member.id}">
             <small id="idHelp" class="form-text text-muted help"><p></p></small>
         </div>
 
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control inputs" id="name" name="name" disabled value="${member.name}">
+            <input type="text" class="form-control inputs" id="name" name="name" disabled th:value="${session.member.name}" >
             <small id="namelHelp" class="form-text text-muted help"><p></p></small>
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control inputs" id="address" name="address" disabled value="${member.address}">
+            <input type="text" class="form-control inputs" id="address" name="address" disabled th:value="${session.member.address}">
             <small id="addresslHelp" class="form-text text-muted help"><p></p></small>
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" class="form-control inputs" id="phone" name="phone" disabled value="${member.phone}">
+            <input type="text" class="form-control inputs" id="phone" name="phone" disabled th:value="${session.member.phone}">
             <small id="phoneHelp" class="form-text text-muted help"><p></p></small>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control inputs" id="email" name="email"  disabled value="${member.email}">
+            <input type="email" class="form-control inputs" id="email" name="email"  disabled th:value="${session.member.email}">
             <small id="emailHelp" class="form-text text-muted help"><p></p></small>
         </div>
 
