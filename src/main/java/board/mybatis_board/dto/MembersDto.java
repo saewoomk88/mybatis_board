@@ -3,6 +3,7 @@ package board.mybatis_board.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.constraints.Email;
 import java.time.LocalDateTime;

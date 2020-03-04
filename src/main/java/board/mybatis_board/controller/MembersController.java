@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,13 +36,13 @@ public class MembersController {
         model.addAttribute(membersService.join(membersDto));
         return "redirect:/";
     }
-    //아이디 중복 체크
+
+    //아작스 아이디 중복 체크
     @PostMapping("/idCheck")
     @ResponseBody
-    public String findById(@RequestParam("id") String id) throws Exception{
-        String findId = membersService.findById(id);
+    public String findById(@RequestParam("id") String id) throws Exception {
+        return membersService.findById(id);
 
-        return findId;
     }
 
     /**
@@ -54,6 +55,21 @@ public class MembersController {
         return "member/memberList";
     }
 
+    //아작스 로그인 체크
+    @ResponseBody
+    @PostMapping("/loginCheck")
+    public String loginCheck(@ModelAttribute MembersDto membersDto) throws Exception {
+        MembersDto login = membersService.login(membersDto);
+        String r ="";
+        if(login !=null){
+            r = "ok";
+        }else {
+            r = "no";
+        }
+        return r;
+    }
+
+
     /**
      * 로그인
      */
@@ -63,14 +79,15 @@ public class MembersController {
     }
 
     @PostMapping("/member/login")
-    public String findOne(MembersDto membersDto, HttpSession session) throws Exception {
-        String path ="";
-        if(membersDto !=null){
+    public String login(MembersDto membersDto, HttpSession session) throws Exception {
+        String path;
+        if (membersDto != null) {
             MembersDto login = membersService.login(membersDto);
             session.setAttribute("member", login);
-            path="redirect:/";
-        }else {
-            path="redirect:/member/login";
+
+            path = "redirect:/";
+        } else {
+            path = "redirect:/member/login";
         }
 
         return path;
@@ -85,13 +102,16 @@ public class MembersController {
         session.invalidate();
         return "redirect:/";
     }
+
     //회원 정보 조회
     @GetMapping("/member/one")
     public String memberOne() {
         return "member/memberOne";
     }
 
-    /**회원 수정**/
+    /**
+     * 회원 수정
+     **/
     @GetMapping("/member/modify")
     public String modify() {
         return "member/memberForm";
@@ -111,15 +131,30 @@ public class MembersController {
 
     }
 
-    /**회원 탈퇴**/
+    /**
+     * 회원 탈퇴
+     **/
     @GetMapping("/member/delete")
-    public String delete(String id,HttpSession session) throws Exception{
-        MembersDto loginDto =(MembersDto) session.getAttribute("member");
+    public String delete(String id, HttpSession session) throws Exception {
+        MembersDto loginDto = (MembersDto) session.getAttribute("member");
         int result = membersService.delete(loginDto.getId());
+        System.out.println("result = " + result);
         session.invalidate();
 
         return "redirect:/";
 
+    }
+
+    @PostMapping("/test")
+    @ResponseBody
+    public String test(@RequestParam("aa") String aa){
+        String k = "";
+        if(aa.equals("iu")){
+            k = "iuuuuuuuuuuuuuuuu";
+        }else {
+            k = "ezzzzzzzzzzzzzzzzzzz";
+        }
+        return k;
     }
 
 

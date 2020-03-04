@@ -59,28 +59,52 @@
     </style>
     <script>
         $(document).ready(function () {
-            var idC= $('#id').val();
-            var pwC= $('#pw').val();
+
+
             $('#btn-Yes').on('click', function () {
+                $.ajax({
+                    url: '/loginCheck',
+                    method: 'POST',
+                    data: {
+                        id: $('#id').val(),
+                        pw: $('#pw').val()
+                    },
+                    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+                    dataType : "text",
+                    success: function (data) {
+                        console.log("0000");
+                        console.log(data);
+                        if (data!=="ok") {
+                            alert('아이디 , 비밀번호가 틀립니다.'+data);
+                            location.reload();
+                            return false;
 
-            });
+                        } else {
 
-            $.ajax({
-                url: 'member/login',
-                type: 'POST',
-                data: {
-                    'id':idC,
-                    'pw':pwC
-                },
-                success: function (data) {
-                    if (data === 1) {
-                        $('form').submit();
-                    } else {
-                        alert('아이디 , 비밀번호가 틀립니다.');
-                        location.reload();
+                            $('#login').submit();
+                            console.log("22222");
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
                     }
-                }
-            })
+                })
+            });
+            $('#bb').on('click', function () {
+                $.ajax({
+                    url: '/test',
+                    type: 'POST',
+                    data: {
+                        aa: "iu"
+                    },
+                    success: function (data) {
+                        alert(data);
+                    },
+                    error: function (request, status, error) {
+                        alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                    }
+                })
+            });
         })
     </script>
 </head>
@@ -92,7 +116,7 @@
         <h2 class="card-title text-center" style="color:#113366;">로그인</h2>
     </div>
     <div class="card-body">
-        <form class="form-signin" method="POST" action="/member/login"> <!--onSubmit="logincall();return false"-->
+        <form id="login" class="form-signin" method="POST" action="/member/login"> <!--onSubmit="logincall();return false"-->
             <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
             <label for="id" class="sr-only">Your ID</label>
             <input type="text" id="id" name="id" class="form-control" placeholder="Your ID" required autofocus><BR>
@@ -104,6 +128,7 @@
                 </label>
             </div>
             <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="button">로 그 인</button>
+            <button id="bb" class="btn btn-lg btn-primary btn-block" type="button">로 그</button>
         </form>
 
     </div>
@@ -111,16 +136,6 @@
 
 <div class="modal">
 </div>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+
 </body>
 </html>
