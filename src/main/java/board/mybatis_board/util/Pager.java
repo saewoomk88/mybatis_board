@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.apache.ibatis.type.Alias;
 
 @Getter @Setter
-@Alias("Pager")
+
 public class Pager {
 
     //Dao select문에 쓰기위함 between startRow and lastRow

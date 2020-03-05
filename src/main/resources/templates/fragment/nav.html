@@ -19,14 +19,17 @@
             <li class = "nav-item" th:if="${session.member !=null}">
                 <a class="nav-link" href="/member/one"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">MyPage</font> </font> </a>
             </li>
+            <li class = "nav-item" th:if="${session.member !=null && session.member.id.equals('iu1')}" >
+                <a class="nav-link" href="/member/list"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">List</font> </font> </a>
+            </li>
             <li class = "nav-item" th:if="${session.member !=null}">
                 <a class="nav-link" href="/member/logout"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">LogOut</font> </font> </a>
             </li>
             <li class = "nav-item" th:unless="${session.member !=null}">
-                <a class="nav-link" href="/member/login"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">Login</font> </font> </a>
+                <a class="nav-link" href="/join"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">Join</font> </font> </a>
             </li>
             <li class = "nav-item" th:unless="${session.member !=null}">
-                <a class="nav-link" href="/join"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">Join</font> </font> </a>
+                <a class="nav-link" href="/member/login"> <font style = "vertical-align : inherit;"> <font style = "vertical-align : inherit;">Login</font> </font> </a>
             </li>
         </ul>
         <form class = "form-inline my-2 my-lg-0">

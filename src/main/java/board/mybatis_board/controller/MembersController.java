@@ -2,6 +2,7 @@ package board.mybatis_board.controller;
 
 import board.mybatis_board.dto.MembersDto;
 import board.mybatis_board.service.MembersService;
+import board.mybatis_board.util.PageMaker;
 import board.mybatis_board.util.Pager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -49,8 +50,9 @@ public class MembersController {
      * 회원 리스트
      */
     @GetMapping("/member/list")
-    public String findAll(Model model, Pager pager) throws Exception {
+    public String findAll(Model model, PageMaker pager) throws Exception {
         model.addAttribute("list", membersService.findAll(pager));
+        pager.setTotalCount(membersService.count());
         model.addAttribute("pager", pager);
         return "member/memberList";
     }

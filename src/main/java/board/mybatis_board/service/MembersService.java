@@ -2,6 +2,7 @@ package board.mybatis_board.service;
 
 import board.mybatis_board.dao.MembersDao;
 import board.mybatis_board.dto.MembersDto;
+import board.mybatis_board.util.PageMaker;
 import board.mybatis_board.util.Pager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class MembersService {
         return membersDao.findOne(id);
     }
 
-    public List<MembersDto> findAll(Pager pager) throws  Exception{
+    public List<MembersDto> findAll(PageMaker pager) throws  Exception{
         return membersDao.findAll(pager);
     }
 

@@ -13,8 +13,8 @@
         select * from members where id=#{id}
     </select>
 
-    <select id="findAll" parameterType="Pager" resultType="membersDto">
-        select * from members order by num desc limit #{startRow},#{pageList}
+    <select id="findAll" parameterType="PageMaker" resultType="membersDto">
+        select * from members order by num desc limit #{pageStart},#{perPageNum}
     </select>
 
     <update id="modify" parameterType="membersDto">
