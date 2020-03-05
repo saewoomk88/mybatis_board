@@ -39,42 +39,7 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#"> <font style="vertical-align : inherit;"> <font style="vertical-align : inherit;">
-        Woom </font> </font> </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="# navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="탐색 ">
-        <span class="navbar-toggler-icon"> </span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#"> <font style="vertical-align : inherit;"> <font
-                        style="vertical-align : inherit;"> 홈 </font> </font> <span class="sr-only"> <font
-                        style="vertical-align : inherit;"> <font style="vertical-align : inherit;"> (현재) </font> </font> </span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> <font style="vertical-align : inherit;"> <font
-                        style="vertical-align : inherit;"> 풍모 </font> </font> </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> <font style="vertical-align : inherit;"> <font
-                        style="vertical-align : inherit;"> 가격 </font> </font> </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> <font style="vertical-align : inherit;"> <font
-                        style="vertical-align : inherit;"> 약 </font> </font> </a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" 자리 표시 자="검색">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><font style="vertical-align : inherit;"> <font
-                    style="vertical-align : inherit;"> 검색 </font> </font></button>
-        </form>
-    </div>
-</nav>
+<div th:replace="fragment/nav :: nav"></div>
 <div class="divTable">
 <table class="table table-hover">
     <thead>
