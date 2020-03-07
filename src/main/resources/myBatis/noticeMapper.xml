@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.mybatis_board.dao.NoticeDao">
-
-    <insert id="insert1" parameterType="noticeDto">
-        insert into notice values(#{num},#{writer},#{title},#{content},#{hit})
-    </insert>
-
-    <select id="select" parameterType="java.lang.Integer" resultType="board.mybatis_board.dto.NoticeDto">
+    <!--시퀀스-->
+    <select id="seq" resultType="java.lang.Integer">
+        select get_seq('notice')
+    </select>
+    <!--    총 게시글 수-->
+    <select id="count" resultType="java.lang.Integer">
+        select count(num) from notice
+    </select>
+    <!--    모든 게시물 찾기-->
+    <select id="findAll" resultType="noticeDto" parameterType="PageMaker">
+select num,writer,title,hit from notice order by num desc limit #{pageStart},#{perPageNum}
+    </select>
+    <!--글 하나 찾기-->
+    <select id="findOne" parameterType="java.lang.Integer" resultType="noticeDto">
         select * from notice where num=#{num}
     </select>
-
+    <!--글 쓰기-->
+    <insert id="write" parameterType="noticeDto">
+        insert into notice values(
+        #{num},#{writer},#{title},#{content},#{hit},#{createdDate},#{lastModifiedDate},#{ref},#{step},#{depth})
+    </insert>
+    <!--글 수정-->
+    <update id="update" parameterType="noticeDto">
+        update notice set title=#{title}, content=#{content}, lastModifiedDate=#{lastModifiedDate} where num=#{num}
+    </update>
+    <!--글 삭제-->
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from notice where num=#{num}
+    </delete>
 </mapper>

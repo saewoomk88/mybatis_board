@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class BoardDto{
-
+public class BoardDto extends BaseTimeDto{
 
     private int num;
     private String writer;

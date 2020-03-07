@@ -27,7 +27,7 @@
             margin-bottom: 0;
             height: 500px;
         }
-        #insert {
+        #write {
             padding: 15px 30px;
             margin-top: 30px;
             float: right;
@@ -36,21 +36,17 @@
 </head>
 <body>
 <div th:replace="fragment/nav :: nav"></div>
-<form id="form" action="/join" method="post">
+<form id="form" action="/notice/write" method="post">
     <fieldset>
         <legend>글쓰기</legend>
 
         <div class="form-group">
             <label for="id">ID</label>
-            <input type="text" class="form-control inputs" id="id" name="id" aria-describedby="idHelp"
-                   readonly value="">
+            <input type="text" class="form-control inputs" id="id" name="writer" aria-describedby="idHelp"
+                   readonly th:value="${session.member.id}">
             <small id="idHelp" class="form-text text-muted help"><p></p></small>
         </div>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control inputs" id="name" name="name" readonly value="">
-            <small id="namelHelp" class="form-text text-muted help"><p></p></small>
-        </div>
+
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control inputs" id="title" name="title" placeholder="Title">
@@ -62,8 +58,7 @@
             <textarea class="form-control" id="content" name="content" rows="3" style="">content</textarea>
         </div>
 
-
-        <button type="button" class="btn btn-primary" id="insert">등록</button>
+        <button type="button" class="btn btn-primary" id="write">등록</button>
     </fieldset>
 </form>
 

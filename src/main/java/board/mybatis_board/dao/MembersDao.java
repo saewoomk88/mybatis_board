@@ -21,5 +21,7 @@ public interface MembersDao {
     int count() throws Exception;
     String findById(String id)throws Exception;
     MembersDto login(MembersDto membersDto) throws Exception;
+    int pwCheck(String id,String pw) throws Exception;
+    int modifyPw(MembersDto membersDto) throws Exception;
 
 }

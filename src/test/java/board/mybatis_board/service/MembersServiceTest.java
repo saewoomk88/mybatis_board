@@ -1,6 +1,7 @@
 package board.mybatis_board.service;
 
 import board.mybatis_board.dto.MembersDto;
+import board.mybatis_board.util.PageMaker;
 import board.mybatis_board.util.Pager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,10 +57,9 @@ class MembersServiceTest {
      @Test
      public void findAll() throws Exception{
          //given
-         Pager pager = new Pager();
+         PageMaker pager = new PageMaker();
          int totalCount = ms.count();
-         pager.paging(totalCount);
-         pager.makeRow();
+
          List<MembersDto> all = ms.findAll(pager);
 
          for (MembersDto membersDto : all) {
@@ -83,23 +83,24 @@ class MembersServiceTest {
      }
       @Test
       public void join() throws Exception{
-          //given
-          MembersDto member1 = ms.findOne("member1");
-            member1.setPhone("12355548");
-            member1.setAddress("modify");
-            member1.setEmail("kkk22@natem.com");
+          MembersDto membersDto = new MembersDto();
 
-          System.out.println("member1.getNum() = " + member1.getNum());
-          int modify = ms.modify(member1);
-
-          int delete = ms.delete(member1.getId());
-
-          assertThat(delete).isEqualTo(1);
+          membersDto.setId("iu");
+          membersDto.setPw("iu");
+          membersDto.setName("saewoom");
+          membersDto.setAddress("seoul");
+          membersDto.setEmail("kkk@natem.com");
+          membersDto.setGender("M");
 
 
-          //when
+          ms.join(membersDto);
 
-          //then
+          System.out.println("membersDto.getJoin_date() = " + membersDto.getJoin_date());
+          MembersDto iu = ms.findOne("iu");
+
+          System.out.println("iu.getJoin_date() = " + iu.getJoin_date());
+          
+          
 
       }
 

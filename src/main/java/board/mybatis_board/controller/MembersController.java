@@ -133,6 +133,39 @@ public class MembersController {
 
     }
 
+    @GetMapping("/member/modifyPw")
+    public String modifyPw() {
+        return "member/memberPwForm";
+    }
+
+    @PostMapping("/member/modifyPw")
+    public String modifyPw(HttpSession session, MembersDto membersDto, Model model) throws Exception {
+        MembersDto modifyMember = (MembersDto) session.getAttribute("member");
+        membersDto.setNum(modifyMember.getNum());
+        int result = membersService.modifyPw(membersDto);
+        if (result > 0) {
+            session.setAttribute("member", membersDto);
+        } else {
+            model.addAttribute("msg", "수정실패");
+        }
+        return "redirect:/member/one";
+
+    }
+
+    //아작스 호출해서 비밀번호가 맞으면 수정하는 페이지로 이동
+    @PostMapping("/member/pwCheck")
+    @ResponseBody
+    public int pwCheck(@RequestParam("id") String id , @RequestParam("pw") String pw, Model model) throws Exception {
+        int result = membersService.pwCheck(id, pw);
+        int r;
+        if(result>0){
+             r = 1;
+        }else {
+            r = 0;
+        }
+        return r;
+    }
+
     /**
      * 회원 탈퇴
      **/

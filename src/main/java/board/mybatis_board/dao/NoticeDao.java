@@ -1,13 +1,18 @@
 package board.mybatis_board.dao;
 
 import board.mybatis_board.dto.NoticeDto;
+import board.mybatis_board.util.PageMaker;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
 public interface NoticeDao {
-    int insert1(NoticeDto noticeDto) throws Exception;
-
-    NoticeDto select(int num) throws Exception;
+    int seq() throws Exception;
+    int count() throws Exception;
+    NoticeDto findAll(PageMaker pageMaker)throws Exception;
+    NoticeDto findOne(int num) throws Exception;
+    int write(NoticeDto noticeDto) throws Exception;
+    int update(NoticeDto noticeDto) throws Exception;
+    int delete(int num) throws Exception;
 }

@@ -54,4 +54,12 @@ public class MembersService {
     public MembersDto login(MembersDto membersDto) throws  Exception{
         return membersDao.login(membersDto);
     }
+
+    public int pwCheck(String id, String pw)  throws Exception{
+        return membersDao.pwCheck(id,pw);
+    }
+
+    public int modifyPw(MembersDto membersDto) throws Exception{
+        return membersDao.modifyPw(membersDto);
+    }
 }

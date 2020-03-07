@@ -21,6 +21,10 @@
         update members set address=#{address}, phone=#{phone}, email=#{email} where id=#{id}
     </update>
 
+    <update id="modifyPw" parameterType="membersDto">
+        update members set pw=#{pw} where id=#{id}
+    </update>
+
     <delete id="delete" parameterType="java.lang.String">
         delete from members where id=#{id}
     </delete>
@@ -36,6 +40,11 @@
     <select id="login" parameterType="membersDto" resultType="membersDto">
         select * from members where id=#{id} and pw=#{pw}
     </select>
+
+    <select id="pwCheck" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(id) from members where id=#{id} and pw=#{pw}
+    </select>
+
 
 
 </mapper>
