@@ -11,7 +11,7 @@
     </select>
     <!--    모든 게시물 찾기-->
     <select id="findAll" resultType="noticeDto" parameterType="PageMaker">
-select num,writer,title,hit from notice order by num desc limit #{pageStart},#{perPageNum}
+        select * from notice order by num desc limit #{pageStart},#{perPageNum}
     </select>
     <!--글 하나 찾기-->
     <select id="findOne" parameterType="java.lang.Integer" resultType="noticeDto">

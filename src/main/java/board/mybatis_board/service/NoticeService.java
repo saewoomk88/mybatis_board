@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class NoticeService {
         return noticeDao.count();
     }
     // 게시물 리스트
-    public NoticeDto findAll(PageMaker pageMaker)throws Exception{
+    public List<NoticeDto> findAll(PageMaker pageMaker)throws Exception{
         return noticeDao.findAll(pageMaker);
     }
 

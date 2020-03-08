@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--    마지막에 변경
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/JavaScript" href="js/bootstrap.min.js"></script>-->
 
+   <!-- <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/JavaScript" href="js/bootstrap.min.js">
+-->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -19,75 +19,86 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <style>
-        table{
+        table {
             min-width: 50%;
             margin: 50px 0;
         }
-        .pager{
-          margin: auto;
-          width: max-content;
+
+        .pager {
+            margin: auto;
+            width: max-content;
             clear: both;
         }
-        .divTable{
+
+        .divTable {
 
             max-width: 80%;
             margin: auto;
         }
-        #write{
+
+        #write {
             float: right;
         }
+        a:hover{
+
+        }
     </style>
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+
+            $('#insert').on('click', function () {
+
+                location.href = '/notice/write';
+
+            });
+            /* <![CDATA[ */
+            var msg =/*[[${msg}]]*/;
+            if(msg!=''){
+                alert(msg);
+            }
+            /* ]]> */
+
+
+        });
+    </script>
 </head>
 <body>
 <div th:replace="fragment/nav :: nav"></div>
 <div class="divTable">
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">Num</th>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Address</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Email</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="table-primary">
-        <th scope="row">1</th>
-        <td>member1</td>
-        <td>iu</td>
-        <td>서울 서대문구 홍제동 321-1</td>
-        <td>010-0000-0000</td>
-        <td>ssinga1@naver.com</td>
-    </tr>
-    </tbody>
-</table>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Num</th>
+            <th scope="col">Writer</th>
+            <th scope="col">Title</th>
+            <th scope="col">hit</th>
+            <th scope="col">createdDate</th>
+       </tr>
+        </thead>
+        <tbody>
+        <tr class="table-primary" th:each="board1 : ${notice}">
+            <th scope="row" th:text="${board1.num}"></th>
+            <td th:text="${board1.writer}"></td>
+            <td><a th:href="@{/notice/one(num=${board1.num})}"><span  th:text="${board1.title}"></span></a></td>
+            <td th:text="${board1.hit}"></td>
+            <td th:text="${board1.createdDate}"></td>
 
-<button type="button" class="btn btn-primary" id="insert">글쓰기</button>
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary" id="insert">글쓰기</button>
 </div>
 <div class="pager">
     <ul class="pagination pagination-sm">
-        <li class="page-item disabled">
-            <a class="page-link" href="#">&laquo;</a>
+        <li class="page-item" th:if="${pager.prev}==true">
+            <a class="page-link" th:href="@{/notice/list(page=${pager.startPage}-1,perPageNum=${pager.perPageNum})}">&laquo;</a>
         </li>
-        <li class="page-item active">
-            <a class="page-link" href="#">1</a>
+        <li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pager.startPage, pager.endPage)}" th:classappend="${pager.page} == ${idx} ? active : null">
+            <a class="page-link" th:href="@{/notice/list(page=${idx},perPageNum=${pager.perPageNum})}" th:text="${idx}"></a>
         </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">5</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">&raquo;</a>
+        <li class="page-item" th:if="${pager.next}==true and ${pager.endPage >0}">
+            <a class="page-link" th:href="@{/notice/list(page=${pager.endPage}+1,perPageNum=${pager.perPageNum})}">&raquo;</a>
         </li>
     </ul>
 </div>

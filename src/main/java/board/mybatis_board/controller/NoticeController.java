@@ -1,5 +1,6 @@
 package board.mybatis_board.controller;
 
+import board.mybatis_board.dto.MembersDto;
 import board.mybatis_board.dto.NoticeDto;
 import board.mybatis_board.service.NoticeService;
 import board.mybatis_board.util.PageMaker;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 public class NoticeController {
@@ -16,9 +19,10 @@ public class NoticeController {
 //모든 게시물 찾기
     @GetMapping("notice/list")
     public String findAll(Model model, PageMaker pageMaker)throws Exception{
-        model.addAttribute("list",noticeService.findAll(pageMaker));
+        model.addAttribute("notice",noticeService.findAll(pageMaker));
         pageMaker.setTotalCount(noticeService.count());
         model.addAttribute("pager",pageMaker);
+
         return "/board/boardList";
     }
     //게시물 하나 찾기
@@ -29,14 +33,21 @@ public class NoticeController {
     }
     //글쓰기
     @GetMapping("/notice/write")
-    public String write() throws Exception{
-
-        return "/board/boardInsert";
+    public String write(Model model, HttpSession session) throws Exception{
+        MembersDto members = (MembersDto) session.getAttribute("member");
+        String path ="";
+        if(members !=null){
+            path = "/board/boardInsert";
+        }else {
+            path = "redirect:/notice/list";
+            model.addAttribute("msg","no");
+        }
+        return path;
     }
     @PostMapping("/notice/write")
     public String write(Model model,NoticeDto noticeDto) throws Exception{
         model.addAttribute(noticeService.write(noticeDto));
-        return "redirect:/notice/one";
+        return "redirect:/notice/list";
     }
     //글 수정
     @GetMapping("/notice/modify")

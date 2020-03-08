@@ -33,6 +33,13 @@
             float: right;
         }
     </style>
+    <script>
+        $(function () {
+            $('#write').on('click', function () {
+                $('#form').submit();
+            })
+        })
+    </script>
 </head>
 <body>
 <div th:replace="fragment/nav :: nav"></div>

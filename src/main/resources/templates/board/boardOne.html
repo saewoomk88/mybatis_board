@@ -22,19 +22,24 @@
     <script>
         $(function () {
             $('#delete').on('click', function () {
-                location.href='/notice/delete';
-            })
-        })
-        $(function () {
+                var leave = confirm("정말 삭제하시겠습니까?");
+                if(leave){
+                    console.log('leave')
+                location.href = '/notice/delete';
+                }
+            });
+
             $('#update').on('click', function () {
-                location.href='/notice/modify';
-            })
-        })
-        $(function () {
+                location.href = '/notice/modify';
+            });
+
+
             $('#list').on('click', function () {
-                location.href='/notice/list';
-            })
+                location.href = '/notice/list';
+            });
         })
+
+
     </script>
 </head>
 <body>
@@ -42,7 +47,8 @@
 <!--기본 셋팅.. -->
 <div class="container p-3 my-3 border">
     <div class="row">
-        <div class="col-sm-8 p-2" style="background-color:lavender; text-align: left; border:  1px red solid ;" th:text="${notice.writer}">
+        <div class="col-sm-8 p-2" style="background-color:lavender; text-align: left; border:  1px red solid ;"
+             th:text="${notice.writer}">
         </div>
         <div class="col-sm-4 p-2" style="background-color:lavenderblush; text-align: right; border:  1px solid red;">
             <i class='far fa-eye' th:text="${notice.hit}"></i>
@@ -52,7 +58,8 @@
             <div class="col-sm-12" th:text="${notice.num}"></div>
             <div class="col-sm-12"><h2 th:text="${notice.title}"></h2></div>
         </div>
-        <div class="col-sm-12" style="background-color:lavender; text-align: left; height: 300px; " th:text="${notice.content}">
+        <div class="col-sm-12" style="background-color:lavender; text-align: left; height: 300px; "
+             th:text="${notice.content}">
             <hr/>
 
         </div>
@@ -69,7 +76,8 @@
     </div>
 
     <div class="row pt-4">
-        <div class="col-sm-12 p-2" style="background-color:lavender; text-align: left; border:  1px red solid ;">댓글</div>
+        <div class="col-sm-12 p-2" style="background-color:lavender; text-align: left; border:  1px red solid ;">댓글
+        </div>
 
         <!--댓글이 생기면 아작스로 가져오면 될 거같다-->
         <div class="col-sm-12 pl-2 pb-0" style="background-color:#ffb0d3; ">
