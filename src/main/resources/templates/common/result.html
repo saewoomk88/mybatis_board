@@ -1,3 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<p th:text="${result}"></p>
+<header>
+</header>
+<body>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var message = [[${msg}]];
+    alert(message);
+
+    var url = [[${url}]];
+    location.href = url;
+
+    /*]]>*/
+</script>
+</body>
+</html>

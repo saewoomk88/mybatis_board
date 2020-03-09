@@ -23,9 +23,9 @@
         $(function () {
             $('#delete').on('click', function () {
                 var leave = confirm("정말 삭제하시겠습니까?");
-                if(leave){
+                if (leave) {
                     console.log('leave')
-                location.href = '/notice/delete';
+                    location.href = '/notice/delete';
                 }
             });
 
@@ -68,8 +68,8 @@
 
     <div class="row">
         <div class="col-sm-12 d-flex" style="background-color:#ffb0d3;">
-            <button type="button" class="btn btn-primary mr-2" id="update">수정</button>
-            <button type="button" class="btn btn-primary" id="delete">삭제</button>
+            <button type="button" class="btn btn-primary mr-2" id="update" th:if="${notice.writer.equals(session.member.id)}">수정</button>
+            <button type="button" class="btn btn-primary" id="delete" th:if="${notice.writer.equals(session.member.id)}">삭제</button>
             <button type="button" class="btn btn-primary ml-auto" id="list">목록</button>
         </div>
 
@@ -85,9 +85,11 @@
             <div class="col-sm-12"><span class="badge badge-pill badge-primary">2020/02/08</span></div>
         </div>
         <div class="col-sm-12" style="background-color:lavender; text-align: left; height: 300px; ">내용</div>
-
-        <!--댓글 입력창 -->
+    </div>
+    <!--댓글 입력창 -->
+    <div class="row" th:if="${session.member !=null}">
         <div class="col-sm-12 pl-2 pb-0 " style="background-color:#ffb0d3; ">
+
             <div class="col-sm-12" style="background-color:#99abff;" th:text="${session.member.id}"></div>
         </div>
         <div class="col-sm-10" style="background-color:lavenderblush;">
@@ -101,10 +103,15 @@
         <div class="col-sm-2 pt-5 pr-md-0" style="background-color:#94ff8b;">
             <button type="button" class="btn btn-primary ml-auto" id="write">등록</button>
         </div>
-
-
     </div>
+    <div class="row" th:unless="${session.member !=null}">
+        <div class="col-sm-12 pl-2 pb-0" style="background-color:#ffb0d3; ">
 
+            <div class="col-sm-12" style="background-color:#99abff; text-align: center;"><a th:href="@{/member/login}"><span
+                    th:text="로그인"></span></a>해야 댓글을 달 수 있습니다.
+            </div>
+        </div>
+    </div>
 
 </div>
 

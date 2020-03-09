@@ -22,7 +22,7 @@ public class NoticeController {
         model.addAttribute("notice",noticeService.findAll(pageMaker));
         pageMaker.setTotalCount(noticeService.count());
         model.addAttribute("pager",pageMaker);
-
+        model.addAttribute("msg","no");
         return "/board/boardList";
     }
     //게시물 하나 찾기
@@ -39,8 +39,9 @@ public class NoticeController {
         if(members !=null){
             path = "/board/boardInsert";
         }else {
-            path = "redirect:/notice/list";
-            model.addAttribute("msg","no");
+            model.addAttribute("msg", "로그인 후 가능합니다");
+            model.addAttribute("url", "/notice/list");
+            path = "/common/result";
         }
         return path;
     }

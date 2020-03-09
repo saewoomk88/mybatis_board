@@ -43,7 +43,7 @@
 </head>
 <body>
 <div th:replace="fragment/nav :: nav"></div>
-<form id="form" action="/notice/write" method="post">
+<form id="form" action="/notice/write" method="post" th:if="${session.member !=null}">
     <fieldset>
         <legend>글쓰기</legend>
 
@@ -68,6 +68,14 @@
         <button type="button" class="btn btn-primary" id="write">등록</button>
     </fieldset>
 </form>
+<div class="row" th:unless="${session.member !=null}">
+    <div class="col-sm-12 pl-2 pb-0" style="background-color:#ffb0d3; ">
+
+        <div class="col-sm-12" style="background-color:#99abff; text-align: center;"><a th:href="@{/member/login}"><span
+                th:text="로그인"></span></a>후 사용가능합니다.
+        </div>
+    </div>
+</div>
 
 
 </body>
