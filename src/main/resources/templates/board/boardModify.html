@@ -33,13 +33,23 @@
             float: right;
         }
     </style>
+    <script>
+
+        $(function () {
+            var num = $('#num').val();
+            $('#update').on('click',function () {
+               $('#form').submit();
+            })
+        })
+
+    </script>
 </head>
 <body>
 <div th:replace="fragment/nav :: nav"></div>
-<form id="form" action="/join" method="post">
+<form id="form" action="/notice/modify" method="post">
     <fieldset>
         <legend>글쓰기</legend>
-
+        <input type="hidden" id="num" name="num" th:value="${notice.num}">
 
         <div class="form-group">
             <label for="id">ID</label>
@@ -47,6 +57,7 @@
                    disabled th:value="${session.member.id}">
             <small id="idHelp" class="form-text text-muted help"><p></p></small>
         </div>
+
 
         <div class="form-group">
             <label for="title">Title</label>

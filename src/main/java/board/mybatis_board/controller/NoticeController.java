@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +24,6 @@ public class NoticeController {
         model.addAttribute("notice",noticeService.findAll(pageMaker));
         pageMaker.setTotalCount(noticeService.count());
         model.addAttribute("pager",pageMaker);
-        model.addAttribute("msg","no");
         return "/board/boardList";
     }
     //게시물 하나 찾기
@@ -57,9 +58,9 @@ public class NoticeController {
         return "/board/boardModify";
     }
     @PostMapping("/notice/modify")
-    public String update(Model model, NoticeDto noticeDto) throws Exception{
+    public String update( NoticeDto noticeDto, Model model) throws Exception{
         model.addAttribute(noticeService.update(noticeDto));
-        return "redirect:/notice/one";
+        return "redirect:/notice/list";
     }
 
     //글 삭제
