@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<header>
+</header>
+<body th:fragment="commet">
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var bNum = [[${notice.num}]]; //게시글 번호
+
+    $('#write').click(function () {
+        var insertData =$('#form').serialize(); // 폼의 내용을 가져온다
+        commentInsert(insertData); //함수호출 (아래)
+    });
+
+    //댓글 목록
+    function commentList() {
+        $.ajax({
+            url:'/reply/list',
+            type:'get',
+            data:{'bNum':bNum},
+            success: function (data) {
+                var a ='';
+                $.each(data, function(key, value){
+                    a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                    a += '<div class="commentInfo'+value.cNum+'">'+'댓글번호 : '+value.cNum+' / 작성자 : '+value.writer;
+                    a += '<a onclick="commentUpdate('+value.cNum+',\''+value.content+'\');"> 수정 </a>';
+                    a += '<a onclick="commentDelete('+value.cNum+');"> 삭제 </a> </div>';
+                    a += '<div class="commentContent'+value.cNum+'"> <p> 내용 : '+value.content +'</p>';
+                    a += '</div></div>';
+                });
+
+                $('#commentList').html(a);
+            }
+        })
+    }
+
+    //댓글 등록
+    function commentInsert(insertData) {
+        $.ajax({
+            url: '/reply/insert',
+            type: 'post',
+            data: insertData,
+            success: function (data) {
+                if(data==1){
+                    commentList(); //댓글 작성 후 댓글 목록 reload
+                    $('#content').text('');
+                }
+            }
+        })
+
+    }
+    //댓글 수정 - 댓글 내용 출력을  input 폼으로 변경
+    function commentUpdate(cNum, content) {
+        var a='';
+        a += '<div class="input-group">';
+        a += '<input type="text" class="form-control" name="content_'+cNum+'" value="'+content+'"/>';
+        a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cNum+');">수정</button> </span>';
+        a += '</div>';
+
+        $('.commentContent'+cNum).html(a);
+
+    }
+
+    //댓글수정
+    function commentUpdateProc(cNum) {
+        var updateContent = $('[name=content_'+cNum+']').val();
+
+        $.ajax({
+            url: '/reply/update',
+            type: 'post',
+            data: {'content': updateContent, 'cNum': cNum},
+            success: function (data) {
+                if(data==1) commentList(bNum); //댓글 수정 후 목록 출력
+            }
+        })
+    }
+
+    //댓글 삭제
+    function commentDelete(cNum) {
+        $.ajax({
+            url: '/reply/delete'+cNum,
+            type: 'post',
+            success: function (data) {
+                if(data==1) commentList(bNum); //댓글 수정 후 목록 출력
+            }
+        })
+    }
+
+    $(document).ready(function(){
+        commentList(); //페이지 로딩시 댓글 목록 출력
+    });
+
+
+    /*]]>*/
+
+</script>
+</body>
+</html>

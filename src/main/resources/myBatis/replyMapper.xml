@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.mybatis_board.dao.ReplyDao">
+    <!--시퀀스-->
+    <select id="seq" resultType="java.lang.Integer">
+        select get_seq('comment')
+    </select>
+    <!--    총 게시글 수-->
+    <select id="count" resultType="java.lang.Integer">
+        select count(cNum) from comment
+    </select>
+    <!--    모든 게시물 찾기-->
+    <select id="findAll" resultType="replyDto">
+        select * from comment
+    </select>
+    <!--글 쓰기-->
+    <insert id="write" parameterType="replyDto">
+        insert into comment values(
+        #{cNum},#{bNum},#{writer},#{content},now())
+    </insert>
+    <!--글 수정-->
+    <update id="update" parameterType="replyDto">
+        update comment set content=#{content} where cNum=#{cNum}
+    </update>
+    <!--글 삭제-->
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from comment where cNum=#{cNum}
+    </delete>
+
+    <!--  게시물에 댓글 수-->
+    <select id="bNum" resultType="java.lang.Integer">
+        select count(bNum) from comment
+    </select>
+
+</mapper>

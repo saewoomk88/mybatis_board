@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head><title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--    마지막에 변경
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/JavaScript" href="js/bootstrap.min.js"></script>-->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        form{
+            max-width: 80%;
+            margin: 50px auto;
+        }
+        #content{
+            margin-top: 0;
+            margin-bottom: 0;
+            height: 500px;
+        }
+        #write {
+            padding: 15px 30px;
+            margin-top: 30px;
+            float: right;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('#write').on('click', function () {
+                $('#form').submit();
+            })
+        })
+    </script>
+</head>
+<body>
+<div th:replace="fragment/nav :: nav"></div>
+<form id="form" action="/notice/reply" method="post" th:if="${session.member !=null}">
+    <fieldset>
+        <legend>글쓰기</legend>
+
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control inputs" id="id" name="writer" aria-describedby="idHelp"
+                   readonly th:value="${session.member.id}">
+            <small id="idHelp" class="form-text text-muted help"><p></p></small>
+        </div>
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control inputs" id="title" name="title" placeholder="Title">
+            <small id="titleHelp"  class="form-text text-muted help"><p></p></small>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" id="content" name="content" rows="3" style="">content</textarea>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="write">등록</button>
+    </fieldset>
+</form>
+<div class="row" th:unless="${session.member !=null}">
+    <div class="col-sm-12 pl-2 pb-0" style="background-color:#ffb0d3; ">
+
+        <div class="col-sm-12" style="background-color:#99abff; text-align: center;"><a th:href="@{/member/login}"><span
+                th:text="로그인"></span></a>후 사용가능합니다.
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

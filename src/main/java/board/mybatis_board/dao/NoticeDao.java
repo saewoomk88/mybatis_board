@@ -17,4 +17,7 @@ public interface NoticeDao {
     int write(NoticeDto noticeDto) throws Exception;
     int update(NoticeDto noticeDto) throws Exception;
     int delete(int num) throws Exception;
+    int replyUpdate(NoticeDto noticeDto) throws Exception;
+    int reply(NoticeDto noticeDto) throws Exception;
+
 }

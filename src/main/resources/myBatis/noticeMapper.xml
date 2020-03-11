@@ -11,7 +11,7 @@
     </select>
     <!--    모든 게시물 찾기-->
     <select id="findAll" resultType="noticeDto" parameterType="PageMaker">
-        select * from notice order by num desc limit #{pageStart},#{perPageNum}
+        select * from notice order by ref desc, step asc limit #{pageStart},#{perPageNum}
     </select>
     <!--글 하나 찾기-->
     <select id="findOne" parameterType="java.lang.Integer" resultType="noticeDto">
@@ -30,4 +30,14 @@
     <delete id="delete" parameterType="java.lang.Integer">
         delete from notice where num=#{num}
     </delete>
+
+<!-- 답글 달기-->
+    <insert id="reply" parameterType="noticeDto">
+         insert into notice values(
+        #{num},#{writer},#{title},#{content},#{hit},#{createdDate},#{lastModifiedDate},#{ref},#{step},#{depth})
+    </insert>
+<!-- 답글달기 전 step 업데이트해주기-->
+    <update id="replyUpdate" parameterType="noticeDto">
+		update notice set step=step+1 where ref=#{ref} and step>#{step}
+	</update>
 </mapper>

@@ -57,5 +57,19 @@ public class NoticeService {
         return noticeDao.delete(num);
     }
     //답글 달기
+    public int reply(NoticeDto noticeDto) throws Exception{
+        NoticeDto findOne = noticeDao.findOne(noticeDto.getNum());
+        noticeDao.replyUpdate(findOne);
+
+        noticeDto.setNum(seq());
+        noticeDto.setCreatedDate(LocalDateTime.now());
+        noticeDto.setLastModifiedDate(LocalDateTime.now());
+        noticeDto.setHit(0);
+        noticeDto.setRef(findOne.getRef());
+        noticeDto.setStep(findOne.getStep()+1);
+        noticeDto.setDepth(findOne.getDepth()+1);
+
+        return noticeDao.reply(noticeDto);
+    }
 
 }

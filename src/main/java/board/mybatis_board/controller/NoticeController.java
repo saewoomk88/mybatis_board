@@ -70,6 +70,24 @@ public class NoticeController {
         return "redirect:/notice/list";
     }
     //답글 달기
+    @GetMapping("/notice/reply")
+    public String reply(Model model, HttpSession session) throws Exception{
+        MembersDto members = (MembersDto) session.getAttribute("member");
+        String path ="";
+        if(members !=null){
+            path = "/board/boardReply";
+        }else {
+            model.addAttribute("msg", "로그인 후 가능합니다");
+            model.addAttribute("url", "/notice/list");
+            path = "/common/result";
+        }
+        return path;
+    }
+    @PostMapping("/notice/reply")
+    public String reply(Model model,NoticeDto noticeDto) throws Exception{
+        model.addAttribute(noticeService.reply(noticeDto));
+        return "redirect:/notice/list";
+    }
 
 
 }
