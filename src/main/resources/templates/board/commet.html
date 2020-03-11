@@ -22,12 +22,24 @@
                 console.log(data);
                 var a ='';
                 $.each(data, function(key, value){
-                    a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                    a += '<div class="commentInfo'+value.cnum+'">'+'댓글번호 : '+value.cnum+' / 작성자 : '+value.writer;
+                    a+='<div class="col-sm-12 commentArea" >';
+                    a+='<div class="col-sm-12">'+value.writer+'</div>';
+                    a+='<div class="col-sm-12 d-inline commentInfo'+value.cnum+'" >'+'댓글번호 : '+value.cnum;
+                    a+=' <span class="badge badge-pill badge-primary">'+value.reg_date+'</span></div>';
+                    a+=' <div class="col-sm-1 d-inline btn" >';
+                    a+='<a  onclick="commentUpdate('+value.cnum+',\''+value.content+'\');"> <i class="fas fa-edit"></i> </a></div>';
+                    a+='<div class="col-sm-1 d-inline btn">';
+                    a+='<a onclick="commentDelete('+value.cnum+')"><i class="far fa-trash-alt"></i> </a></div>';
+                    a+='</div>';
+                    a+=' <div class="col-sm-12 commentContent'+value.cnum+'" style="border-bottom: black solid 1px; "> <p> '+value.content +'</p></div>';
+                   /*
+                    a += '<div class="col-sm-12 commentArea">'+value.writer;
+                    a += '<div class="col-sm-12 commentInfo'+value.cnum+'">'+'댓글번호 : '+value.cnum;
+                    a += '<span class="badge badge-pill badge-primary">'+value.reg_date+'</span></div>';
                     a += '<a onclick="commentUpdate('+value.cnum+',\''+value.content+'\');"> 수정 </a>';
                     a += '<a onclick="commentDelete('+value.cnum+')"> 삭제 </a> </div>';
-                    a += '<div class="commentContent'+value.cnum+'"> <p> 내용 : '+value.content +'</p>';
-                    a += '</div></div>';
+                    a += '<div class="col-sm-12 commentContent'+value.cnum+'"> <p> 내용 : '+value.content +'</p>';
+                    a += '</div></div>';*/
                 });
 
                 $('#commentList').html(a);
@@ -44,7 +56,7 @@
             success: function (data) {
                 if(data==1){
                     commentList(); //댓글 작성 후 댓글 목록 reload
-                    $('#content').text('');
+                    $('#content').val('');
                 }
             }
         })

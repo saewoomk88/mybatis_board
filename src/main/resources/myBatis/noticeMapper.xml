@@ -30,13 +30,16 @@
     <delete id="delete" parameterType="java.lang.Integer">
         delete from notice where num=#{num}
     </delete>
-
-<!-- 답글 달기-->
+    <!--히트수 증감-->
+    <update id="hit" parameterType="java.lang.Integer">
+        update notice set hit=hit+1 where num=#{num}
+    </update>
+    <!-- 답글 달기-->
     <insert id="reply" parameterType="noticeDto">
          insert into notice values(
         #{num},#{writer},#{title},#{content},#{hit},#{createdDate},#{lastModifiedDate},#{ref},#{step},#{depth})
     </insert>
-<!-- 답글달기 전 step 업데이트해주기-->
+    <!-- 답글달기 전 step 업데이트해주기-->
     <update id="replyUpdate" parameterType="noticeDto">
 		update notice set step=step+1 where ref=#{ref} and step>#{step}
 	</update>

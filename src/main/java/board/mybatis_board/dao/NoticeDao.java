@@ -19,5 +19,5 @@ public interface NoticeDao {
     int delete(int num) throws Exception;
     int replyUpdate(NoticeDto noticeDto) throws Exception;
     int reply(NoticeDto noticeDto) throws Exception;
-
+    int hit(int num) throws Exception;
 }

@@ -33,6 +33,7 @@ public class NoticeService {
 
         //글 하나 검색
     public NoticeDto findOne(int num) throws Exception {
+        noticeDao.hit(num);
         return noticeDao.findOne(num);
     }
     //글쓰기
@@ -71,5 +72,7 @@ public class NoticeService {
 
         return noticeDao.reply(noticeDto);
     }
+
+
 
 }

@@ -43,60 +43,74 @@
 
         /*]]>*/
     </script>
+    <style>
+        #commentList{
+            padding: 0;
+            border-left: black solid 1px;
+            border-right: black solid 1px;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="fragment/nav :: nav"></div>
+
 <!--기본 셋팅.. -->
-<div class="container p-3 my-3 border">
-    <div class="row">
-        <div class="col-sm-8 p-2" style="background-color:lavender; text-align: left; border:  1px red solid ;"
+<div class="container p-3 my-3 border" >
+    <div class="row" style="border: black solid 1px">
+        <div class="col-sm-8 p-2" style="background-color:lavender; text-align: left; "
              th:text="${notice.writer}">
         </div>
-        <div class="col-sm-4 p-2" style="background-color:lavenderblush; text-align: right; border:  1px solid red;">
+        <div class="col-sm-4 p-2" style="background-color:lavender; text-align: right; ">
             <i class='far fa-eye' th:text="${notice.hit}"></i>
             <span class="badge badge-pill badge-primary" th:text="${notice.lastModifiedDate}"></span>
         </div>
-        <div class="col-sm-12 pl-2 pb-0" style="background-color:#ffb0d3; ">
+        <div class="col-sm-12 pl-2 pb-0" style="background-color:lavender;">
             <div class="col-sm-12" th:text="${notice.num}"></div>
             <div class="col-sm-12"><h2 th:text="${notice.title}"></h2></div>
         </div>
         <div class="col-sm-12" style="background-color:lavender; text-align: left; height: 300px; "
              th:text="${notice.content}">
             <hr/>
-
         </div>
-
     </div>
 
-    <div class="row">
-        <div class="col-sm-12 d-flex" style="background-color:#ffb0d3;" th:if="${session.member !=null}">
-            <button type="button" class="btn btn-primary mr-2" id="update"
+<!--버튼-->
+    <div class="row" >
+        <div class="col-sm-12 d-flex" style="background-color:lavender;" th:if="${session.member !=null}">
+            <button type="button" class="btn mr-2" id="update"
                     th:if="${notice.writer.equals(session.member.id)}">수정
             </button>
-            <button type="button" class="btn btn-primary" id="delete"
+            <button type="button" class="btn" id="delete"
                     th:if="${notice.writer.equals(session.member.id)}">삭제
             </button>
-            <button type="button" class="btn btn-primary ml-auto" id="list">목록</button>
+            <button type="button" class="btn ml-auto" id="list">목록</button>
         </div>
 
     </div>
 
     <div class="row pt-4">
-        <div class="col-sm-12 p-2" style="background-color:lavender; text-align: left; border:  1px red solid ;">댓글
-        </div>
+        <div class="col-sm-12 p-2" style="text-align: left; border:  1px black solid ;">댓글</div>
 
         <!--댓글 창 ,,,댓글이 생기면 아작스로 가져오면 될 거같다-->
-        <div class="col-sm-12 pl-2 pb-0" id="commentList" style="background-color:#ffb0d3; ">
-         <!--   <div class="col-sm-12">아이디</div>
-            <div class="col-sm-12"><span class="badge badge-pill badge-primary">2020/02/08</span></div>
+        <div class="col-sm-12 pl-0 pb-0" id="commentList" >
+            <div class="col-sm-12 commentArea" >
+                <div class="col-sm-12">+value.writer</div>
+                <div class="col-sm-12 d-inline commentInfo'+value.cnum+'" >'+'댓글번호 : '+value.cnum
+                    <span class="badge badge-pill badge-dark">'+value.reg_date+'</span></div>
+               <div class="col-sm-1 d-inline btn" >
+                   <a  onclick="commentUpdate('+value.cnum+',\''+value.content+'\');" > <i class='fas fa-edit'></i> </a></div>
+                <div class="col-sm-1 d-inline btn" >
+                    <a onclick="commentDelete('+value.cnum+')"><i class='far fa-trash-alt'></i> </a></div>
+            </div>
+            <div class="col-sm-12 commentContent'+value.cnum+'" style="border-bottom: black solid 1px"> <p> 내용 : '+value.content +'</p></div>
         </div>
-        <div class="col-sm-12" style="background-color:lavender; text-align: left; height: 300px; ">내용--></div>
     </div>
-    <!--댓글 입력창 -->
-    <div class="row" th:if="${session.member !=null}">
-        <div class="col-sm-12 pl-2 pb-0 " style="background-color:#ffb0d3; ">
 
-            <div class="col-sm-12" style="background-color:#99abff;" th:text="${session.member.id}"></div>
+    <!--댓글 입력창 -->
+    <div class="row" th:if="${session.member !=null}" style="border: black solid 1px;">
+        <div class="col-sm-12 pl-2 pb-0 " style="background-color:lavenderblush; ">
+
+            <div class="col-sm-12" th:text="${session.member.id}"></div>
         </div>
         <div class="col-sm-10" style="background-color:lavenderblush;">
             <form id="form" method="post">
@@ -107,14 +121,14 @@
                           style="height: 100px; width: 100%;"></textarea>
             </form>
         </div>
-        <div class="col-sm-2 pt-5 pr-md-0" style="background-color:#94ff8b;">
-            <button type="button" class="btn btn-primary ml-auto" id="write">등록</button>
+        <div class="col-sm-2 pt-5 pr-md-0" style="background-color:lavenderblush;">
+            <button type="button" class="btn btn-outline-dark  ml-auto" id="write">등록</button>
         </div>
     </div>
     <div class="row" th:unless="${session.member !=null}">
-        <div class="col-sm-12 pl-2 pb-0" style="background-color:#ffb0d3; ">
+        <div class="col-sm-12 pl-2 pb-0" style="background-color:lavenderblush; ">
 
-            <div class="col-sm-12" style="background-color:#99abff; text-align: center;"><a
+            <div class="col-sm-12" style="text-align: center;"><a
                     th:href="@{/member/login}"><span
                     th:text="로그인"></span></a>해야 댓글을 달 수 있습니다.
             </div>
