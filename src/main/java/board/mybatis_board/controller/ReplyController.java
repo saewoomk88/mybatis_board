@@ -21,8 +21,8 @@ public class ReplyController {
     //댓글 목록
     @GetMapping("/reply/list")
     @ResponseBody
-    public List<ReplyDto> findAll() throws Exception{
-        return replyService.findAll();
+    public List<ReplyDto> findAll(@RequestParam int bNum) throws Exception{
+        return replyService.findAll(bNum);
     }
 
     //댓글 작성
@@ -40,9 +40,9 @@ public class ReplyController {
     //댓글 수정
     @PostMapping("/reply/update")
     @ResponseBody
-    public int update(@RequestParam int num, @RequestParam String content) throws Exception{
+    public int update(@RequestParam int cNum, @RequestParam String content) throws Exception{
         ReplyDto replyDto = new ReplyDto();
-        replyDto.setBNum(num);
+        replyDto.setCNum(cNum);
         replyDto.setContent(content);
         return replyService.update(replyDto);
     }

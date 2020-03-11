@@ -16,7 +16,7 @@ public interface ReplyDao {
     //게시글 댓글 수
     int bNum() throws Exception;
     //댓글 목록
-    List<ReplyDto> findAll()throws Exception;
+    List<ReplyDto> findAll(int bNum)throws Exception;
     //댓글 작성
     int write(ReplyDto replyDto) throws Exception;
     //댓글 수정

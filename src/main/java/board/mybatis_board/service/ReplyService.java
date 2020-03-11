@@ -12,8 +12,8 @@ import java.util.List;
 public class ReplyService {
     private final ReplyDao replyDao;
     //댓글 목록
-    public List<ReplyDto> findAll() throws Exception{
-        return replyDao.findAll();
+    public List<ReplyDto> findAll(int bNum) throws Exception{
+        return replyDao.findAll(bNum);
     }
     //댓글 입력
     public int write(ReplyDto replyDto) throws Exception{

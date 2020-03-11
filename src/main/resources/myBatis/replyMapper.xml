@@ -11,13 +11,15 @@
     </select>
     <!--    모든 게시물 찾기-->
     <select id="findAll" resultType="replyDto">
-        select * from comment
+        select * from comment where bNum=#{bNum} order by cNum desc
     </select>
+
     <!--글 쓰기-->
     <insert id="write" parameterType="replyDto">
         insert into comment values(
-        #{cNum},#{bNum},#{writer},#{content},now())
+        #{cNum},#{bNum},#{content},#{writer},now())
     </insert>
+
     <!--글 수정-->
     <update id="update" parameterType="replyDto">
         update comment set content=#{content} where cNum=#{cNum}
