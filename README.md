@@ -15,5 +15,5 @@
 1. sns 로그인
 
 <hr>
-
+* 기술스택<br>
 SpringBoot, thymeleaf, mybatis, IntelliJ, Mysql, jQurey, ajax, css, bootstrap  
