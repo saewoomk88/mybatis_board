@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head><title>Hello</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link type="text/css" rel="stylesheet" href="css/basic.css">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -14,13 +14,14 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script>
-
-</script>
+    <style>
+        img { max-width: 100%; height: auto; }
+    </style>
 
 </head>
 <body>
 <div th:replace="fragment/nav :: nav"></div>
+<img src="images/pika.jpg" alt="pikachoo" class="mt-5 img-thumbnail mx-auto d-block">
 
 
 

@@ -88,7 +88,7 @@
 <form id="form" action="/member/modifyPw" method="post">
     <fieldset>
         <legend>비밀번호</legend>
-        <input type="text" readonly name="id" th:value="${session.member.id}">
+        <input type="hidden" readonly name="id" th:value="${session.member.id}">
 
         <div class="form-group">
             <label for="pw">새로운 비밀번호</label>

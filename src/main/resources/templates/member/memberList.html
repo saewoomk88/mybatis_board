@@ -48,7 +48,7 @@
     <tbody>
     <tr class="table-primary" th:each="member : ${list}">
         <th scope="row" th:text="${member.num}"></th>
-        <td th:text=""></td>
+        <td th:text="${member.id}"></td>
         <td th:text="${member.name}"></td>
         <td th:text="${member.address}"></td>
         <td th:text="${member.phone}"></td>

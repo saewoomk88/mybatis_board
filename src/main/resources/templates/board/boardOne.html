@@ -98,9 +98,9 @@
                 <div class="col-sm-12 d-inline commentInfo'+value.cnum+'" >'+'댓글번호 : '+value.cnum
                     <span class="badge badge-pill badge-dark">'+value.reg_date+'</span></div>
                <div class="col-sm-1 d-inline btn" >
-                   <a  onclick="commentUpdate('+value.cnum+',\''+value.content+'\');" > <i class='fas fa-edit'></i> </a></div>
+                   <a  onclick="commentUpdate('+value.cnum+',\''+value.content+'\');" > <i class='fas fa-edit'></i> 수정</a></div>
                 <div class="col-sm-1 d-inline btn" >
-                    <a onclick="commentDelete('+value.cnum+')"><i class='far fa-trash-alt'></i> </a></div>
+                    <a onclick="commentDelete('+value.cnum+')"><i class='far fa-trash-alt'></i> </a> 삭제</div>
             </div>
             <div class="col-sm-12 commentContent'+value.cnum+'" style="border-bottom: black solid 1px"> <p> 내용 : '+value.content +'</p></div>
         </div>
