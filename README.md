@@ -43,6 +43,7 @@
 ![git4](https://user-images.githubusercontent.com/43767934/76593349-704f2e00-6539-11ea-9047-eb8296b93504.jpg)
 **회원탈퇴 클릭시 alret창 활성화 (확인)시 탈퇴**
 ![git6](https://user-images.githubusercontent.com/43767934/76593661-45b1a500-653a-11ea-9feb-080eb4438d06.png)
+![q-horz](https://user-images.githubusercontent.com/43767934/84913751-d1b50900-b0f5-11ea-94a8-a97db3b156ab.jpg)
 ---
 
 **로그인 후 글쓰기 가능**
