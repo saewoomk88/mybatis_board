@@ -47,6 +47,7 @@
 ---
 
 **로그인 후 글쓰기 가능**
+
 ![git14-vert](https://user-images.githubusercontent.com/43767934/76596037-8b716c00-6540-11ea-9b33-c5ee9d6a591a.jpg)
 ![q-horz](https://user-images.githubusercontent.com/43767934/84913751-d1b50900-b0f5-11ea-94a8-a97db3b156ab.jpg)
 **로그인 회원만 댓글쓰기 가능**
