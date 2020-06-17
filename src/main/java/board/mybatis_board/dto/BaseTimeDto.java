@@ -10,4 +10,6 @@ public class BaseTimeDto {
 
     private LocalDateTime createdDate;
     private LocalDateTime lastModifiedDate;
+
+
 }

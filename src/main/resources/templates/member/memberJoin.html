@@ -20,6 +20,7 @@
     <script>
         $(document).ready(function () {
 
+            // true & false 체크
             var checkId;
             var checkPw;
             var checkPw2;
@@ -38,6 +39,7 @@
 
                     return false;
                 } else {
+                    //아작스를 이용한 비동기 데이터 받기
                     $.ajax({
                         url: '/idCheck',
                         type: 'POST',

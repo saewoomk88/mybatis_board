@@ -144,7 +144,7 @@ public class MembersController {
         membersDto.setNum(modifyMember.getNum());
         int result = membersService.modifyPw(membersDto);
         if (result > 0) {
-            session.setAttribute("member", membersDto);
+            session.setAttribute("member", modifyMember);
         } else {
             model.addAttribute("msg", "수정실패");
         }
