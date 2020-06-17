@@ -22,6 +22,10 @@
 ![git8-horz](https://user-images.githubusercontent.com/43767934/76594419-6c70db00-653c-11ea-81e8-1abd32834319.jpg)
 >방금 가입했기 때문에 중복아이디체크에 걸린다.
 ![git7-vert](https://user-images.githubusercontent.com/43767934/76594539-c5407380-653c-11ea-8b44-1bbcbec3faef.jpg)
+
+![cats](https://user-images.githubusercontent.com/43767934/84911864-b943ef00-b0f3-11ea-8aa0-519cc656b744.jpg)
+![asd](https://user-images.githubusercontent.com/43767934/84912173-19d32c00-b0f4-11ea-82a4-79444cf30d28.jpg)
+
 ---
 **로그인화면**
 ![git2](https://user-images.githubusercontent.com/43767934/76592634-53b1f680-6537-11ea-9a10-c0f0658c6382.png)
